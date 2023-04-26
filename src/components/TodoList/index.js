@@ -3,7 +3,7 @@ import Todo from '../Todo';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTodoAction } from '../../redux/action';
 import { v4 } from 'uuid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { searchTextSelector, todoListSelector } from '../../redux/selectors';
 
 export default function TodoList() {
@@ -12,6 +12,14 @@ export default function TodoList() {
   const dispatch = useDispatch();
   const todoList = useSelector(todoListSelector);
   const searchText = useSelector(searchTextSelector)
+
+  const [todoListFilter, setTodoListFilter] = useState([]);
+  
+  useEffect(() => {
+    setTodoListFilter(todoList.filter((todo) => {
+      return todo.name.includes(searchText);
+    }))
+  }, [searchText, todoList])
   const handleAddButtonClick = () => {
     dispatch(addTodoAction({
       id: v4(),
@@ -35,7 +43,7 @@ export default function TodoList() {
   return (
     <Row style={{ height: 'calc(100% - 40px)' }}>
       <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
-        {todoList.map(todo => <Todo name={todo.name} priority={todo.priority}/>)}
+        {todoListFilter.map(todo => <Todo name={todo.name} priority={todo.priority}/>)}
       </Col>
       <Col span={24}>
         <Input.Group style={{ display: 'flex' }} compact>

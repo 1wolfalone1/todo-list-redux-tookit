@@ -12,3 +12,4 @@ export const searchFilterChange = (payload) => {
       payload: payload,
    }
 }
+
