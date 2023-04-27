@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-export const todoListSelector = (state) => state.todoList;
+export const todoListSelector = (state) => state.todoList.todos;
 
 export const searchTextSelector = (state) => state.filters.search;
 
@@ -19,7 +19,7 @@ export const todosRemainingSelector = createSelector(
         return todoList.filter((todo) => {
             let prioritiesCheck = true;
             let statusCheck = true;
-
+            console.log(todo);
             if(priorities.length === 0) {
                 prioritiesCheck = true;
             } else {

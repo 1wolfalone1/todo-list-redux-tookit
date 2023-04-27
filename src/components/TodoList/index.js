@@ -9,7 +9,7 @@ import {
    todoListSelector,
    todosRemainingSelector,
 } from "../../redux/selectors";
-import todoListSlice from "./todoSlice";
+import todoListSlice, { addNewTodo, addTodos } from "./todoSlice";
 export default function TodoList() {
    const [todoName, setTodoName] = useState("");
    const [priority, setPriority] = useState("Medium");
@@ -27,7 +27,20 @@ export default function TodoList() {
          //    priority: priority,
          //    completed: false,
          // })
-         todoListSlice.actions.addTodo({
+         // todoListSlice.actions.addTodo({
+         //    id: v4(),
+         //    name: todoName,
+         //    priority: priority,
+         //    completed: false,
+         // })
+         // addTodos({
+         //    id: v4(),
+         //    name: todoName,
+         //    priority: priority,
+         //    completed: false,
+         // })
+
+         addNewTodo({
             id: v4(),
             name: todoName,
             priority: priority,
@@ -48,9 +61,7 @@ export default function TodoList() {
    };
 
    return (
-      <Row style={{ height: "calc(100% - 40px)" ,
-                     color: "#1d1d1d"
-      }}>
+      <Row style={{ height: "calc(100% - 40px)", color: "#1d1d1d" }}>
          <Col
             span={24}
             style={{ height: "calc(100% - 40px)", overflowY: "auto" }}
