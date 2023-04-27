@@ -13,3 +13,24 @@ export const searchFilterChange = (payload) => {
    }
 }
 
+export const statusFilterChange = (status) => {
+
+   return {
+      type: 'filters/statusFilterChange',
+      payload: status
+   }
+}
+
+export const priorityFilterChange = (priorities) => {
+   return {
+      type: 'filters/priorityFilterChange',
+      payload: priorities
+   }
+}
+
+export const toggleTodoStatus = (id) => {
+   return {
+      type: 'todoList/toggleTodoStatus',
+      payload: id
+   }
+}
